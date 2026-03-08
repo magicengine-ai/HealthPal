@@ -8,8 +8,7 @@
 HealthPal/
 ├── src/
 │   ├── mobile/      # 移动端 (iOS/Android)
-│   ├── backend/     # 后端服务 (Go)
-│   └── embedded/    # 嵌入式固件 (设备接入)
+│   └── backend/     # 后端服务 (Go)
 ├── docs/            # 文档
 ├── scripts/         # 脚本工具
 ├── config/          # 配置文件
