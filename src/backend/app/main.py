@@ -17,14 +17,19 @@ async def lifespan(app: FastAPI):
     print(f"📡 Environment: {settings.ENV}")
     print(f"📦 Debug Mode: {settings.DEBUG}")
     
-    # 初始化数据库连接等
-    # await init_db()
+    # 初始化数据库连接
+    from app.core.database import init_db
+    try:
+        await init_db()
+    except Exception as e:
+        print(f"⚠️  数据库初始化失败：{e}")
     
     yield
     
     # 关闭时清理
     print("👋 HealthPal Backend Shutting Down...")
-    # await close_db()
+    from app.core.database import close_db
+    await close_db()
 
 
 app = FastAPI(

@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv
+
+# 环境配置
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 上传文件
+uploads/*
+!uploads/.gitkeep
+
+# 日志
+*.log
+logs/
+
+# 数据库
+*.db
+*.sqlite
+
+# 测试
+.pytest_cache/
+.coverage
+htmlcov/
+
+# macOS
+.DS_Store
