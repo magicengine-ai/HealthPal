@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: healthpal-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: healthpal_root
+      MYSQL_DATABASE: healthpal
+      MYSQL_USER: healthpal
+      MYSQL_PASSWORD: healthpal_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - healthpal-net
+
+  mongodb:
+    image: mongo:6
+    container_name: healthpal-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: healthpal
+      MONGO_INITDB_ROOT_PASSWORD: healthpal_pass
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - healthpal-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: healthpal-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - healthpal-net
+
+  backend:
+    build:
+      context: ../src/backend
+      dockerfile: Dockerfile
+    container_name: healthpal-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - mongodb
+      - redis
+    environment:
+      DB_HOST: mysql
+      MONGO_HOST: mongodb
+      REDIS_HOST: redis
+    networks:
+      - healthpal-net
+
+volumes:
+  mysql_data:
+  mongo_data:
+
+networks:
+  healthpal-net:
+    driver: bridge
