@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from app.core.config import settings
-from app.api import auth, users, records, indicators, medications
+from app.api.router import api_router
 
 
 @asynccontextmanager
@@ -17,7 +17,7 @@ async def lifespan(app: FastAPI):
     print(f"📡 Environment: {settings.ENV}")
     print(f"📦 Debug Mode: {settings.DEBUG}")
     
-    # 初始化数据库连接（可选）
+    # 初始化数据库连接
     try:
         from app.core.database import init_db
         await init_db()
@@ -30,6 +30,12 @@ async def lifespan(app: FastAPI):
     
     # 关闭时清理
     print("👋 HealthPal Backend Shutting Down...")
+    
+    try:
+        from app.core.database import close_db
+        await close_db()
+    except Exception as e:
+        print(f"⚠️  关闭数据库连接失败：{e}")
 
 
 app = FastAPI(
@@ -48,12 +54,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 注册路由
-app.include_router(auth.router, prefix="/api/v1/auth", tags=["认证"])
-app.include_router(users.router, prefix="/api/v1/users", tags=["用户"])
-app.include_router(records.router, prefix="/api/v1/records", tags=["健康档案"])
-app.include_router(indicators.router, prefix="/api/v1/indicators", tags=["健康指标"])
-app.include_router(medications.router, prefix="/api/v1/medications", tags=["用药管理"])
+# 注册 API 路由
+app.include_router(api_router, prefix=settings.API_PREFIX)
 
 
 @app.get("/health", tags=["健康检查"])
@@ -68,6 +70,7 @@ async def root():
     return {
         "message": "Welcome to HealthPal API",
         "docs": "/docs",
+        "redoc": "/redoc",
         "version": "1.0.0"
     }
 
@@ -76,7 +79,7 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
         "app.main:app",
-        host="0.0.0.0",
-        port=8000,
+        host=settings.HOST,
+        port=settings.PORT,
         reload=settings.DEBUG
     )
