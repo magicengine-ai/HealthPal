@@ -51,3 +51,7 @@ def decode_access_token(token: str) -> Optional[dict]:
         return payload
     except JWTError:
         return None
+
+
+# 别名，方便导入
+decode_token = decode_access_token

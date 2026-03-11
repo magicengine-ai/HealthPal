@@ -14,7 +14,7 @@ from app.core.auth import get_current_user, blacklist_token, check_token_blackli
 from app.models.user import User
 from app.schemas.user import (
     UserCreate, UserLogin, TokenResponse, UserResponse,
-    UserRegisterResponse, PasswordReset, PasswordChange
+    PasswordReset, PasswordChange, UserUpdate
 )
 from app.services.sms import get_sms_service
 from sqlalchemy import select

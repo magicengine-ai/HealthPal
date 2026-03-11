@@ -23,8 +23,15 @@ TEST_NICKNAME = "测试用户"
 
 async def test_auth_flow():
     """测试认证完整流程"""
-    async with httpx.AsyncClient() as client:
+    # 禁用代理
+    import os
+    os.environ['NO_PROXY'] = '*'
+    os.environ['no_proxy'] = '*'
+    
+    transport = httpx.AsyncHTTPTransport(local_address="127.0.0.1")
+    async with httpx.AsyncClient(transport=transport, proxies=None) as client:
         token = None
+        current_password = TEST_PASSWORD
         
         # 1. 发送验证码
         print("\n📱 1. 发送验证码...")
@@ -45,7 +52,7 @@ async def test_auth_flow():
             f"{BASE_URL}/auth/register",
             json={
                 "phone": TEST_PHONE,
-                "password": TEST_PASSWORD,
+                "password": current_password,
                 "verify_code": VERIFY_CODE,
                 "nickname": TEST_NICKNAME
             }
@@ -64,7 +71,7 @@ async def test_auth_flow():
                 f"{BASE_URL}/auth/login",
                 json={
                     "phone": TEST_PHONE,
-                    "password": TEST_PASSWORD
+                    "password": current_password
                 }
             )
             print(f"   状态码：{response.status_code}")
@@ -110,7 +117,7 @@ async def test_auth_flow():
             f"{BASE_URL}/auth/change-password",
             headers={"Authorization": f"Bearer {token}"},
             json={
-                "old_password": TEST_PASSWORD,
+                "old_password": current_password,
                 "new_password": "new123456"
             }
         )
@@ -118,8 +125,7 @@ async def test_auth_flow():
         if response.status_code == 200:
             print(f"   ✅ 密码修改成功")
             # 更新密码用于后续测试
-            global TEST_PASSWORD
-            TEST_PASSWORD = "new123456"
+            current_password = "new123456"
         else:
             print(f"   ❌ 密码修改失败：{response.json()}")
         
