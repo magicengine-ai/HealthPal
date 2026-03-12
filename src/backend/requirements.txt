@@ -13,3 +13,7 @@ python-multipart==0.0.6
 aiofiles==23.2.1  # 异步文件处理
 httpx==0.26.0  # HTTP 客户端（调用 OCR 等）
 python-dotenv==1.0.0
+
+# Celery 异步任务
+celery==5.3.4
+flower==2.0.1  # Celery 监控工具

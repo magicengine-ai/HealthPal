@@ -8,6 +8,7 @@ from app.api.family import router as family_router
 from app.api.records import router as records_router
 from app.api.indicators import router as indicators_router
 from app.api.medications import router as medications_router
+from app.api.tasks import router as tasks_router
 
 # 创建主路由
 api_router = APIRouter()
@@ -19,3 +20,4 @@ api_router.include_router(family_router)
 api_router.include_router(records_router)
 api_router.include_router(indicators_router)
 api_router.include_router(medications_router)
+api_router.include_router(tasks_router)

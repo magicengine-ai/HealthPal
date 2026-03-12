@@ -17,6 +17,9 @@ from app.schemas.common import ResponseModel
 from app.services.record_service import RecordService
 from app.services.file_service import FileService
 from app.utils.validator import validate_date_format
+from app.tasks.ocr_tasks import process_ocr_task
+from celery.result import AsyncResult
+from app.core.celery_config import celery_app
 
 router = APIRouter(prefix="/records", tags=["健康档案"])
 
@@ -89,14 +92,19 @@ async def upload_record(
     # 更新档案文件 URL
     await record_service.update_record_files(record.uuid, [file_url])
     
-    # 触发 OCR 识别
-    await record_service.trigger_ocr_task(record.uuid, file_url)
+    # 异步触发 OCR 任务（使用 Celery）
+    ocr_task = process_ocr_task.delay(
+        record_id=record.uuid,
+        file_path=file_url,
+        ocr_provider="baidu"
+    )
     
     return ResponseModel(
         code=0,
-        message="上传成功",
+        message="上传成功，OCR 识别任务已提交",
         data={
             "record_id": record.uuid,
+            "task_id": ocr_task.id,
             "ocr_status": "pending"
         }
     )
