@@ -12,6 +12,7 @@ import 'providers/records_provider.dart';
 import 'providers/medication_provider.dart';
 import 'services/api_service.dart';
 import 'services/storage_service.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,10 @@ void main() async {
 
   // 初始化 API 服务
   await ApiService.init();
+
+  // 初始化通知服务
+  await NotificationService.init();
+  await NotificationService.requestPermissions();
 
   runApp(const HealthPalApp());
 }

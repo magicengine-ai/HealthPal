@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../config/theme.dart';
 import '../../providers/medication_provider.dart';
 import '../../models/medication_model.dart';
+import '../../widgets/medication_dialog.dart';
 
 /// 用药管理页
 class MedicationScreen extends StatefulWidget {
@@ -316,38 +317,17 @@ class _MedicationScreenState extends State<MedicationScreen> {
   }
 
   void _showAddMedicationDialog() {
-    // TODO: 实现添加用药对话框
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('添加用药'),
-        content: const Text('此功能待实现'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('确定'),
-          ),
-        ],
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const MedicationDialog(),
       ),
     );
   }
 
   void _showEditMedicationDialog(MedicationModel med) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('编辑 ${med.name}'),
-        content: const Text('此功能待实现'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('取消'),
-          ),
-          ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('保存'),
-          ),
-        ],
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MedicationDialog(medication: med),
       ),
     );
   }
