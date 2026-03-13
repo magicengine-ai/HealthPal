@@ -1,0 +1,70 @@
+<!--pages/records/records.wxml-->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input">
+      <text class="search-icon">🔍</text>
+      <input placeholder="搜索档案、报告" bindinput="onSearchInput" value="{{searchKeyword}}"/>
+    </view>
+  </view>
+
+  <!-- 分类筛选 -->
+  <view class="category-filter">
+    <view class="filter-item {{currentCategory === 'all' ? 'active' : ''}}" 
+          bindtap="switchCategory" data-category="all">
+      全部
+    </view>
+    <view class="filter-item {{currentCategory === 'checkup' ? 'active' : ''}}" 
+          bindtap="switchCategory" data-category="checkup">
+      体检
+    </view>
+    <view class="filter-item {{currentCategory === 'medical' ? 'active' : ''}}" 
+          bindtap="switchCategory" data-category="medical">
+      病历
+    </view>
+    <view class="filter-item {{currentCategory === 'lab' ? 'active' : ''}}" 
+          bindtap="switchCategory" data-category="lab">
+      检查
+    </view>
+    <view class="filter-item {{currentCategory === 'prescription' ? 'active' : ''}}" 
+          bindtap="switchCategory" data-category="prescription">
+      处方
+    </view>
+  </view>
+
+  <!-- 档案列表 -->
+  <view class="records-list">
+    <view class="record-card" wx:for="{{filteredRecords}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <view class="record-header">
+        <text class="record-icon">{{item.icon}}</text>
+        <view class="record-info">
+          <text class="record-title">{{item.title}}</text>
+          <text class="record-hospital">{{item.hospital}}</text>
+        </view>
+        <text class="record-date">{{item.date}}</text>
+      </view>
+      <view class="record-summary">
+        <text class="summary-label">指标概览:</text>
+        <text class="summary-text">{{item.summary}}</text>
+      </view>
+      <view class="record-footer">
+        <view class="record-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+        </view>
+        <text class="record-status {{item.status}}">{{item.statusText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{filteredRecords.length === 0}}">
+    <text class="empty-icon">📄</text>
+    <text class="empty-text">暂无档案</text>
+    <text class="empty-hint">点击右上角上传第一份档案</text>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="add-button" bindtap="uploadRecord">
+    <text class="add-icon">+</text>
+  </view>
+</view>

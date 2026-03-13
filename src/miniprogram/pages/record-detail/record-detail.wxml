@@ -1,0 +1,77 @@
+<!--pages/record-detail/record-detail.wxml-->
+<view class="container">
+  <!-- 基本信息 -->
+  <view class="card info-card">
+    <view class="info-header">
+      <text class="info-icon">{{record.icon}}</text>
+      <view class="info-content">
+        <text class="info-title">{{record.title}}</text>
+        <text class="info-hospital">{{record.hospital}} · {{record.department}}</text>
+        <text class="info-date">{{record.date}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关键指标 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">关键指标</text>
+      <text class="card-action" bindtap="exportReport">导出报告</text>
+    </view>
+    <view class="indicators-list">
+      <view class="indicator-row" wx:for="{{indicators}}" wx:key="name">
+        <view class="indicator-left">
+          <text class="indicator-name">{{item.name}}</text>
+          <text class="indicator-unit">{{item.unit}}</text>
+        </view>
+        <view class="indicator-value {{item.status}}">
+          <text class="value-number">{{item.value}}</text>
+          <text class="value-status">{{item.statusText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI 解读 -->
+  <view class="card ai-analysis">
+    <view class="card-header">
+      <text class="card-title">🤖 AI 解读</text>
+    </view>
+    <view class="ai-content">
+      <text class="ai-text">{{aiAnalysis}}</text>
+    </view>
+    <view class="ai-actions">
+      <view class="ai-action-btn" bindtap="askAI">
+        <text>追问 AI</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 原始报告 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">原始报告</text>
+    </view>
+    <view class="original-images">
+      <image 
+        wx:for="{{originalImages}}" 
+        wx:key="*this"
+        class="original-image"
+        src="{{item}}" 
+        mode="aspectFill"
+        bindtap="previewImage"
+        data-index="{{index}}"
+      />
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn secondary" bindtap="shareReport">
+      分享报告
+    </button>
+    <button class="action-btn primary" bindtap="consultDoctor">
+      在线咨询
+    </button>
+  </view>
+</view>

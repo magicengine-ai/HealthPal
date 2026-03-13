@@ -1,0 +1,102 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 健康评分卡片 -->
+  <view class="card health-score-card">
+    <view class="card-header">
+      <text class="card-title">健康评分</text>
+      <text class="score-date">{{today}}</text>
+    </view>
+    <view class="score-content">
+      <view class="score-circle">
+        <text class="score-number">{{healthScore}}</text>
+        <text class="score-label">分</text>
+      </view>
+      <view class="score-info">
+        <text class="score-level">{{scoreLevel}}</text>
+        <view class="score-bar">
+          <view class="score-bar-fill" style="width: {{healthScore}}%"></view>
+        </view>
+        <text class="score-desc">击败 {{beatPercent}}% 的同龄人</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近指标 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">最近指标</text>
+      <text class="card-more" bindtap="goToAnalysis">查看全部 ></text>
+    </view>
+    <view class="indicators-grid">
+      <view class="indicator-item" bindtap="goToIndicatorDetail" data-type="blood-pressure">
+        <view class="indicator-icon">🫀</view>
+        <text class="indicator-name">血压</text>
+        <text class="indicator-value">{{indicators.bloodPressure}}</text>
+        <text class="indicator-status {{indicators.bloodPressureStatus}}">{{indicators.bloodPressureStatusText}}</text>
+      </view>
+      <view class="indicator-item" bindtap="goToIndicatorDetail" data-type="blood-sugar">
+        <view class="indicator-icon">🩸</view>
+        <text class="indicator-name">血糖</text>
+        <text class="indicator-value">{{indicators.bloodSugar}}</text>
+        <text class="indicator-status {{indicators.bloodSugarStatus}}">{{indicators.bloodSugarStatusText}}</text>
+      </view>
+      <view class="indicator-item" bindtap="goToIndicatorDetail" data-type="weight">
+        <view class="indicator-icon">⚖️</view>
+        <text class="indicator-name">体重</text>
+        <text class="indicator-value">{{indicators.weight}}</text>
+        <text class="indicator-status {{indicators.weightStatus}}">{{indicators.weightStatusText}}</text>
+      </view>
+      <view class="indicator-item" bindtap="goToIndicatorDetail" data-type="heart-rate">
+        <view class="indicator-icon">💓</view>
+        <text class="indicator-name">心率</text>
+        <text class="indicator-value">{{indicators.heartRate}}</text>
+        <text class="indicator-status {{indicators.heartRateStatus}}">{{indicators.heartRateStatusText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日提醒 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">今日提醒</text>
+      <text class="card-more" bindtap="goToReminders">管理提醒 ></text>
+    </view>
+    <view class="reminders-list">
+      <view class="reminder-item" wx:for="{{reminders}}" wx:key="id">
+        <view class="reminder-checkbox">
+          <checkbox checked="{{item.completed}}" color="#1890FF" bindtap="toggleReminder" data-id="{{item.id}}"/>
+        </view>
+        <view class="reminder-content">
+          <text class="reminder-time">{{item.time}}</text>
+          <text class="reminder-text">{{item.text}}</text>
+        </view>
+        <view class="reminder-status {{item.completed ? 'completed' : ''}}">
+          {{item.completed ? '已完成' : '未完成'}}
+        </view>
+      </view>
+      <view class="no-reminders" wx:if="{{reminders.length === 0}}">
+        <text>暂无今日提醒</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick-actions">
+    <view class="action-btn" bindtap="uploadRecord">
+      <view class="action-icon">📷</view>
+      <text class="action-text">上传报告</text>
+    </view>
+    <view class="action-btn" bindtap="recordSymptom">
+      <view class="action-icon">📝</view>
+      <text class="action-text">记录症状</text>
+    </view>
+    <view class="action-btn" bindtap="addIndicator">
+      <view class="action-icon">📊</view>
+      <text class="action-text">添加指标</text>
+    </view>
+    <view class="action-btn" bindtap="askAI">
+      <view class="action-icon">🤖</view>
+      <text class="action-text">AI 问诊</text>
+    </view>
+  </view>
+</view>

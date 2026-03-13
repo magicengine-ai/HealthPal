@@ -1,0 +1,240 @@
+/* pages/index/index.wxss */
+
+.container {
+  padding: 20rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 健康评分卡片 */
+.health-score-card {
+  background: linear-gradient(135deg, #1890FF 0%, #36CFC9 100%);
+  color: #ffffff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.score-date {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.score-content {
+  display: flex;
+  align-items: center;
+}
+
+.score-circle {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40rpx;
+}
+
+.score-number {
+  font-size: 64rpx;
+  font-weight: bold;
+}
+
+.score-label {
+  font-size: 24rpx;
+  margin-top: -10rpx;
+}
+
+.score-info {
+  flex: 1;
+}
+
+.score-level {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.score-bar {
+  width: 100%;
+  height: 12rpx;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-bottom: 12rpx;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.score-desc {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+/* 指标网格 */
+.indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.indicator-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 10rpx;
+  background-color: #F5F5F5;
+  border-radius: 12rpx;
+}
+
+.indicator-icon {
+  font-size: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.indicator-name {
+  font-size: 24rpx;
+  color: #666666;
+  margin-bottom: 8rpx;
+}
+
+.indicator-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 4rpx;
+}
+
+.indicator-status {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.indicator-status.normal {
+  background-color: #E6F7FF;
+  color: #1890FF;
+}
+
+.indicator-status.warning {
+  background-color: #FFF7E6;
+  color: #FA8C16;
+}
+
+.indicator-status.error {
+  background-color: #FFF1F0;
+  color: #F5222D;
+}
+
+/* 提醒列表 */
+.reminders-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #E8E8E8;
+}
+
+.reminder-item:last-child {
+  border-bottom: none;
+}
+
+.reminder-checkbox {
+  margin-right: 20rpx;
+}
+
+.reminder-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.reminder-time {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 6rpx;
+}
+
+.reminder-text {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.reminder-status {
+  font-size: 24rpx;
+  color: #1890FF;
+}
+
+.reminder-status.completed {
+  color: #999999;
+  text-decoration: line-through;
+}
+
+.no-reminders {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #999999;
+  font-size: 28rpx;
+}
+
+/* 快捷操作 */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 20rpx;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.action-icon {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: #333333;
+}
+
+/* 通用卡片样式 */
+.card {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.card-more {
+  font-size: 24rpx;
+  color: #1890FF;
+}
