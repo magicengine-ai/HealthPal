@@ -1,0 +1,118 @@
+/* pages/devices/devices.wxss */
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+}
+
+.device-list {
+  background-color: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+
+.device-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.device-item:last-child {
+  border-bottom: none;
+}
+
+.device-icon {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #f5f5f5;
+  border-radius: 20rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 50rpx;
+  flex-shrink: 0;
+}
+
+.device-info {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.device-name {
+  display: block;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.device-status {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.device-status.connected {
+  color: #52c41a;
+}
+
+.device-action {
+  display: flex;
+  align-items: center;
+}
+
+.action-text {
+  font-size: 28rpx;
+  color: #1890FF;
+}
+
+.action-arrow {
+  color: #ccc;
+  margin-left: 10rpx;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 100rpx 20rpx;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  display: block;
+  font-size: 30rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.empty-hint {
+  display: block;
+  font-size: 26rpx;
+  color: #ccc;
+}
+
+.add-device-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1890FF;
+  color: #fff;
+  border-radius: 44rpx;
+  padding: 20rpx 40rpx;
+  position: fixed;
+  bottom: 100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.add-icon {
+  font-size: 36rpx;
+  margin-right: 10rpx;
+}
+
+.add-text {
+  font-size: 28rpx;
+}

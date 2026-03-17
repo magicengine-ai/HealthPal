@@ -1,0 +1,63 @@
+/* pages/indicator-add/indicator-add.wxss */
+.container {
+  padding: 20rpx;
+}
+
+.form-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.input {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.unit {
+  font-size: 28rpx;
+  color: #999;
+  margin-left: 10rpx;
+}
+
+.picker {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.textarea {
+  flex: 1;
+  font-size: 28rpx;
+  height: 150rpx;
+}
+
+.button-section {
+  padding: 0 20rpx 40rpx;
+}
+
+.submit-btn {
+  background-color: #1890FF;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  padding: 25rpx 0;
+}

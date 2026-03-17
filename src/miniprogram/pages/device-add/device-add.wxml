@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="placeholder">
+    <text class="icon">🚧</text>
+    <text class="text">页面开发中</text>
+  </view>
+</view>

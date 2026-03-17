@@ -1,0 +1,29 @@
+<!--pages/devices/devices.wxml-->
+<view class="container">
+  <view class="device-list">
+    <view class="device-item" wx:for="{{devices}}" wx:key="id" bindtap="bindDevice" data-id="{{item.id}}">
+      <view class="device-icon">{{item.icon}}</view>
+      <view class="device-info">
+        <text class="device-name">{{item.name}}</text>
+        <text class="device-status {{item.connected ? 'connected' : ''}}">
+          {{item.connected ? '已连接' : '未连接'}}
+        </text>
+      </view>
+      <view class="device-action">
+        <text class="action-text">{{item.connected ? '管理' : '绑定'}}</text>
+        <text class="action-arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{devices.length === 0}}">
+    <text class="empty-icon">⌚</text>
+    <text class="empty-text">暂无设备</text>
+    <text class="empty-hint">绑定智能设备，自动同步健康数据</text>
+  </view>
+
+  <view class="add-device-btn" bindtap="addDevice">
+    <text class="add-icon">+</text>
+    <text class="add-text">添加设备</text>
+  </view>
+</view>

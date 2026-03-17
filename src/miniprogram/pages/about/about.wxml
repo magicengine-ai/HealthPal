@@ -1,0 +1,48 @@
+<!--pages/about/about.wxml-->
+<view class="container">
+  <view class="logo-section">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"/>
+    <text class="app-name">HealthPal</text>
+    <text class="version">v1.0.0</text>
+  </view>
+
+  <view class="info-section">
+    <view class="info-item">
+      <text class="info-label">开发团队</text>
+      <text class="info-value">HealthPal Team</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">技术支持</text>
+      <text class="info-value" bindtap="copyEmail">support@healthpal.com</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">官方网站</text>
+      <text class="info-value" bindtap="visitWebsite">www.healthpal.com</text>
+    </view>
+  </view>
+
+  <view class="desc-section">
+    <text class="desc-title">关于 HealthPal</text>
+    <text class="desc-text">
+      HealthPal 是一款个人健康档案管理助手，帮助您记录和管理健康数据，提供 AI 健康分析和专业建议。
+    </text>
+    <text class="desc-text">
+      我们致力于让每个人都能轻松管理自己的健康，享受更美好的生活。
+    </text>
+  </view>
+
+  <view class="agreement-section">
+    <view class="agreement-item" bindtap="viewAgreement" data-type="privacy">
+      <text class="agreement-text">📋 隐私政策</text>
+      <text class="agreement-arrow">></text>
+    </view>
+    <view class="agreement-item" bindtap="viewAgreement" data-type="terms">
+      <text class="agreement-text">📄 用户协议</text>
+      <text class="agreement-arrow">></text>
+    </view>
+  </view>
+
+  <view class="copyright">
+    <text>© 2026 HealthPal. All rights reserved.</text>
+  </view>
+</view>

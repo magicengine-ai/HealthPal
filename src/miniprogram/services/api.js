@@ -2,7 +2,11 @@
 const app = getApp()
 
 // API 基础配置
-const API_BASE_URL = 'http://localhost:8000/api'
+// WSL2 环境：
+// - 模拟器调试：使用 localhost
+// - 真机调试：使用 Windows 主机 IP（需要配置端口转发和防火墙）
+const API_BASE_URL = 'http://localhost:8000/api'  // 模拟器用
+// const API_BASE_URL = 'http://192.168.8.250:8000/api'  // 真机用（Windows IP）
 const TIMEOUT = 10000
 
 /**

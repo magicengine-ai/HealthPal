@@ -1,0 +1,19 @@
+{
+  "name": "healthpal-miniprogram",
+  "version": "1.0.0",
+  "description": "HealthPal 个人健康档案 AI 助手 - 微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "health",
+    "miniprogram",
+    "wechat"
+  ],
+  "author": "HealthPal Team",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.28.6"
+  }
+}

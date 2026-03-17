@@ -1,0 +1,16 @@
+<!--pages/family-bind/family-bind.wxml-->
+<view class="container">
+  <view class="search-section">
+    <input class="search-input" placeholder="输入对方手机号或健康档案 ID" value="{{searchText}}" bindinput="onSearchInput"/>
+    <button class="search-btn" bindtap="search">搜索</button>
+  </view>
+
+  <view class="result-section" wx:if="{{searchResult}}">
+    <view class="user-card">
+      <image class="avatar" src="{{searchResult.avatar}}" mode="aspectFill"/>
+      <text class="name">{{searchResult.name}}</text>
+      <text class="relation">{{searchResult.relation}}</text>
+    </view>
+    <button class="bind-btn" bindtap="confirmBind">确认绑定</button>
+  </view>
+</view>

@@ -148,8 +148,11 @@ Page({
       itemList: ['血压', '血糖', '体重', '心率', '体温'],
       success: (res) => {
         const types = ['血压', '血糖', '体重', '心率', '体温']
-        console.log('选择添加:', types[res.tapIndex])
-        // TODO: 跳转到指标录入页面
+        const type = types[res.tapIndex]
+        // 跳转到指标录入页面
+        wx.navigateTo({
+          url: `/pages/indicator-add/indicator-add?type=${type}`
+        })
       }
     })
   },

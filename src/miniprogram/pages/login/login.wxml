@@ -1,0 +1,39 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="logo-section">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"/>
+    <text class="app-name">HealthPal</text>
+    <text class="app-slogan">您的个人健康档案 AI 助手</text>
+  </view>
+
+  <view class="login-section">
+    <view class="phone-input">
+      <text class="input-label">+86</text>
+      <input class="phone-number" type="number" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" maxlength="11"/>
+    </view>
+
+    <view class="code-input">
+      <input class="code-number" type="number" placeholder="验证码" value="{{code}}" bindinput="onCodeInput" maxlength="6"/>
+      <text class="send-code" bindtap="sendCode" wx:if="{{!countdown}}">获取验证码</text>
+      <text class="send-code disabled" wx:else>{{countdown}}s</text>
+    </view>
+
+    <view class="agreement">
+      <checkbox-group bindchange="onAgreeChange">
+        <label class="agree-label">
+          <checkbox value="agree" checked="{{agreed}}"/>
+          <text class="agree-text">我已阅读并同意</text>
+          <text class="agree-link" bindtap="viewAgreement" data-type="terms">《用户协议》</text>
+          <text class="agree-text">和</text>
+          <text class="agree-link" bindtap="viewAgreement" data-type="privacy">《隐私政策》</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+    <button class="login-btn" bindtap="login" disabled="{{!canLogin}}">登录/注册</button>
+  </view>
+
+  <view class="tip-section">
+    <text class="tip-text">未注册的手机号验证后将自动创建账号</text>
+  </view>
+</view>

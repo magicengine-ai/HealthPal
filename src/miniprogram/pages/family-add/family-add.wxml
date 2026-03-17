@@ -1,0 +1,49 @@
+<!--pages/family-add/family-add.wxml-->
+<view class="container">
+  <view class="form-section">
+    <view class="form-item">
+      <text class="label">关系 *</text>
+      <picker mode="selector" range="{{relations}}" value="{{relationIndex}}" bindchange="onRelationChange">
+        <view class="picker">{{relations[relationIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">姓名 *</text>
+      <input class="input" placeholder="请输入姓名" value="{{name}}" bindinput="onNameInput"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">性别</text>
+      <radio-group bindchange="onGenderChange">
+        <label class="radio-label">
+          <radio value="male" checked="{{gender === 'male'}}"/> 男
+        </label>
+        <label class="radio-label">
+          <radio value="female" checked="{{gender === 'female'}}"/> 女
+        </label>
+      </radio-group>
+    </view>
+
+    <view class="form-item">
+      <text class="label">出生日期</text>
+      <picker mode="date" value="{{birthday}}" bindchange="onBirthdayChange">
+        <view class="picker">{{birthday || '选择日期'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">手机号</text>
+      <input class="input" type="number" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">备注</text>
+      <textarea class="textarea" placeholder="备注信息（可选）" value="{{note}}" bindinput="onNoteInput"/>
+    </view>
+  </view>
+
+  <view class="button-section">
+    <button class="submit-btn" bindtap="submit">创建档案</button>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<!--pages/reminders/reminders.wxml-->
+<view class="container">
+  <!-- 添加按钮 -->
+  <view class="add-btn" bindtap="addReminder">
+    <text class="add-icon">+</text>
+    <text class="add-text">添加提醒</text>
+  </view>
+
+  <!-- 提醒列表 -->
+  <view class="reminder-list">
+    <view class="reminder-item" wx:for="{{reminders}}" wx:key="id" bindtap="editReminder" data-id="{{item.id}}">
+      <view class="reminder-left">
+        <text class="reminder-time">{{item.time}}</text>
+        <text class="reminder-text">{{item.text}}</text>
+      </view>
+      <switch checked="{{item.enabled}}" bindchange="toggleReminder" data-id="{{item.id}}" color="#1890FF"/>
+    </view>
+
+    <view class="empty-state" wx:if="{{reminders.length === 0}}">
+      <text class="empty-icon">⏰</text>
+      <text class="empty-text">暂无提醒</text>
+      <text class="empty-hint">点击右上角添加用药或测量提醒</text>
+    </view>
+  </view>
+</view>

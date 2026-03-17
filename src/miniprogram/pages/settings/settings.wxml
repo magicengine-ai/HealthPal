@@ -1,0 +1,51 @@
+<!--pages/settings/settings.wxml-->
+<view class="container">
+  <view class="section">
+    <view class="section-title">🔔 通知设置</view>
+    <view class="setting-item">
+      <text class="setting-label">用药提醒</text>
+      <switch checked="{{medicineReminder}}" bindchange="toggleMedicineReminder" color="#1890FF"/>
+    </view>
+    <view class="setting-item">
+      <text class="setting-label">测量提醒</text>
+      <switch checked="{{measurementReminder}}" bindchange="toggleMeasurementReminder" color="#1890FF"/>
+    </view>
+    <view class="setting-item">
+      <text class="setting-label">异常预警</text>
+      <switch checked="{{alertEnabled}}" bindchange="toggleAlert" color="#1890FF"/>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">👤 隐私设置</view>
+    <view class="setting-item">
+      <text class="setting-label">健康数据可见性</text>
+      <picker mode="selector" range="{{['仅自己', '家人可见', '完全公开']}}" value="{{privacyIndex}}" bindchange="onPrivacyChange">
+        <view class="picker">{{privacyOptions[privacyIndex]}}</view>
+      </picker>
+    </view>
+    <view class="setting-item">
+      <text class="setting-label">允许数据同步</text>
+      <switch checked="{{syncEnabled}}" bindchange="toggleSync" color="#1890FF"/>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">🎨 通用设置</view>
+    <view class="setting-item">
+      <text class="setting-label">深色模式</text>
+      <switch checked="{{darkMode}}" bindchange="toggleDarkMode" color="#1890FF"/>
+    </view>
+    <view class="setting-item">
+      <text class="setting-label">清除缓存</text>
+      <text class="setting-action" bindtap="clearCache">清除</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="setting-item danger" bindtap="clearAllData">
+      <text class="setting-label danger-text">⚠️ 清除所有数据</text>
+      <text class="setting-arrow">></text>
+    </view>
+  </view>
+</view>

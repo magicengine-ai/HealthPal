@@ -1,0 +1,4 @@
+.container{display:flex;justify-content:center;align-items:center;height:100vh}
+.placeholder{text-align:center}
+.icon{font-size:100rpx;display:block;margin-bottom:30rpx}
+.text{font-size:30rpx;color:#999}

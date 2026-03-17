@@ -1,0 +1,33 @@
+<!--pages/ai-consult/ai-consult.wxml-->
+<view class="container">
+  <!-- 聊天区域 -->
+  <scroll-view class="chat-area" scroll-y scroll-into-view="{{scrollToView}}" scroll-with-animation>
+    <view class="message-list">
+      <view class="message-item ai" wx:for="{{messages}}" wx:key="id">
+        <view class="message-avatar">{{item.isAi ? '🤖' : '👤'}}</view>
+        <view class="message-content {{item.isAi ? 'ai' : 'user'}}">
+          <text class="message-text">{{item.content}}</text>
+          <text class="message-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <input class="input-box" placeholder="描述您的症状或健康问题..." value="{{inputText}}" bindinput="onInput" bindconfirm="send"/>
+    <view class="send-btn" bindtap="send" wx:if="{{inputText.trim()}}">
+      <text class="send-icon">📤</text>
+    </view>
+  </view>
+
+  <!-- 快捷问题 -->
+  <view class="quick-questions">
+    <view class="quick-title">💡 常见问题</view>
+    <view class="quick-list">
+      <view class="quick-item" wx:for="{{quickQuestions}}" wx:key="*this" bindtap="askQuick" data-question="{{item}}">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>

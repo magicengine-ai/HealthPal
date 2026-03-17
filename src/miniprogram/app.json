@@ -4,7 +4,22 @@
     "pages/records/records",
     "pages/record-detail/record-detail",
     "pages/analysis/analysis",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/settings/settings",
+    "pages/family-add/family-add",
+    "pages/family-bind/family-bind",
+    "pages/feedback/feedback",
+    "pages/about/about",
+    "pages/reminders/reminders",
+    "pages/reminder-add/reminder-add",
+    "pages/reminder-edit/reminder-edit",
+    "pages/ai-consult/ai-consult",
+    "pages/devices/devices",
+    "pages/device-add/device-add",
+    "pages/device-settings/device-settings",
+    "pages/login/login",
+    "pages/webview/webview",
+    "pages/indicator-add/indicator-add"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -44,5 +59,6 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }

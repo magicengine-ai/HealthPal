@@ -1,0 +1,43 @@
+<!--pages/indicator-add/indicator-add.wxml-->
+<view class="container">
+  <view class="form-section">
+    <view class="form-item">
+      <text class="label">指标类型 *</text>
+      <picker mode="selector" range="{{indicatorTypes}}" value="{{typeIndex}}" bindchange="onTypeChange">
+        <view class="picker">{{indicatorTypes[typeIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item" wx:if="{{showSystolic}}">
+      <text class="label">收缩压 (mmHg) *</text>
+      <input class="input" type="digit" placeholder="例如：120" value="{{systolic}}" bindinput="onSystolicInput"/>
+    </view>
+
+    <view class="form-item" wx:if="{{showSystolic}}">
+      <text class="label">舒张压 (mmHg) *</text>
+      <input class="input" type="digit" placeholder="例如：80" value="{{diastolic}}" bindinput="onDiastolicInput"/>
+    </view>
+
+    <view class="form-item" wx:if="{{showValue}}">
+      <text class="label">测量值 *</text>
+      <input class="input" type="digit" placeholder="请输入数值" value="{{value}}" bindinput="onValueInput"/>
+      <text class="unit" wx:if="{{unit}}">{{unit}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="label">测量时间 *</text>
+      <picker mode="dateTime" value="{{measureTime}}" bindchange="onTimeChange">
+        <view class="picker">{{measureTime || '选择时间'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">备注</text>
+      <textarea class="textarea" placeholder="备注信息（可选）" value="{{note}}" bindinput="onNoteInput"/>
+    </view>
+  </view>
+
+  <view class="button-section">
+    <button class="submit-btn" bindtap="submit">保存指标</button>
+  </view>
+</view>
