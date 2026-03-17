@@ -1,15 +1,8 @@
 """
 密码加密工具
 """
-from passlib.context import CryptContext
-from app.core.config import settings
-
-# 密码加密上下文
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto",
-    bcrypt__rounds=12,
-)
+import bcrypt
+from typing import Union
 
 
 def hash_password(password: str) -> str:
@@ -22,7 +15,11 @@ def hash_password(password: str) -> str:
     Returns:
         加密后的密码哈希
     """
-    return pwd_context.hash(password)
+    # bcrypt 最大支持 72 字节
+    password_bytes = password.encode('utf-8')[:72]
+    salt = bcrypt.gensalt(rounds=12)
+    hashed = bcrypt.hashpw(password_bytes, salt)
+    return hashed.decode('utf-8')
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -36,7 +33,12 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         验证结果：True/False
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        password_bytes = plain_password.encode('utf-8')[:72]
+        hashed_bytes = hashed_password.encode('utf-8')
+        return bcrypt.checkpw(password_bytes, hashed_bytes)
+    except Exception:
+        return False
 
 
 def get_password_hash(password: str) -> str:

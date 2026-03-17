@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
 
     if (success) {
-      AppRouter.goToHome(context);
+      AppRouter.goToHome();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('登录失败，请检查手机号和密码')),
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: const Text('登录'),
         actions: [
           TextButton(
-            onPressed: () => AppRouter.goToRegister(context),
+            onPressed: () => AppRouter.goToRegister(),
             child: const Text('注册'),
           ),
         ],

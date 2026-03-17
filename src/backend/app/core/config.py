@@ -20,18 +20,18 @@ class Settings(BaseSettings):
     PORT: int = 8000
     
     # 数据库配置
-    MYSQL_HOST: str = "localhost"
+    MYSQL_HOST: str = "127.0.0.1"  # Use IP instead of localhost
     MYSQL_PORT: int = 3306
     MYSQL_USER: str = "healthpal"
     MYSQL_PASSWORD: str = "healthpal_pass"
     MYSQL_DATABASE: str = "healthpal"
     
-    MONGO_HOST: str = "localhost"
+    MONGO_HOST: str = "172.17.0.2"  # Docker MongoDB container IP
     MONGO_PORT: int = 27017
     MONGO_USER: str = "healthpal"
     MONGO_PASSWORD: str = "healthpal_pass"
     
-    REDIS_HOST: str = "localhost"
+    REDIS_HOST: str = "172.17.0.2"  # Docker Redis container IP
     REDIS_PORT: int = 6379
     REDIS_DB: int = 0
     

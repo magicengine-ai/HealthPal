@@ -6,11 +6,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.dependencies import get_current_user
 from app.models.user import User
-from app.schemas.user import UserCreate, UserLogin, UserResponse, TokenData
-from app.schemas.common import ResponseModel
+from app.schemas.user import UserCreate, UserLogin, UserResponse
+from app.schemas.common import ResponseModel, TokenData
 from app.services.auth_service import AuthService
 from app.services.user_service import UserService
 from app.utils.validator import validate_phone, validate_password, validate_verify_code
+from app.core.config import settings
 import uuid
 
 router = APIRouter(prefix="/auth", tags=["认证"])
@@ -54,12 +55,13 @@ async def register(
     
     auth_service = AuthService(db)
     
-    # 验证短信验证码
-    if not await auth_service.verify_sms_code(user_data.phone, user_data.verify_code):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="验证码错误或已过期"
-        )
+    # 验证短信验证码（开发环境跳过）
+    if not settings.DEBUG:
+        if not await auth_service.verify_sms_code(user_data.phone, user_data.verify_code):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="验证码错误或已过期"
+            )
     
     # 检查手机号是否已注册
     existing_user = await auth_service.get_user_by_phone(user_data.phone)

@@ -17,8 +17,9 @@ class Base(AsyncAttrs, DeclarativeBase):
 
 # ==================== MySQL ====================
 
-# MySQL 异步引擎（使用 aiomysql 驱动）
-mysql_url_async = f"mysql+aiomysql://{settings.MYSQL_USER}:{settings.MYSQL_PASSWORD}@{settings.MYSQL_HOST}:{settings.MYSQL_PORT}/{settings.MYSQL_DATABASE}?charset=utf8mb4"
+# MySQL 异步引擎（使用 aiomysql 驱动）- WSL2 使用 socket 连接
+mysql_socket = "/var/run/mysqld/mysqld.sock"
+mysql_url_async = f"mysql+aiomysql://{settings.MYSQL_USER}:{settings.MYSQL_PASSWORD}@localhost/{settings.MYSQL_DATABASE}?unix_socket={mysql_socket}&charset=utf8mb4"
 
 engine = create_async_engine(
     mysql_url_async,

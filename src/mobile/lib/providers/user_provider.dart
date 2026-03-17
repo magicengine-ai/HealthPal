@@ -48,7 +48,7 @@ class UserProvider extends ChangeNotifier {
 
       final response = await ApiService.instance.post(
         '/auth/login',
-        {
+        data: {
           'phone': phone,
           'password': password,
         },
@@ -78,7 +78,7 @@ class UserProvider extends ChangeNotifier {
 
       final response = await ApiService.instance.post(
         '/auth/register',
-        {
+        data: {
           'phone': phone,
           'password': password,
           'code': code,

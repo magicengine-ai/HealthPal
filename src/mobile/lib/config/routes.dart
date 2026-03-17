@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/splash/splash_screen.dart';
 import '../screens/auth/login_screen.dart';
@@ -53,7 +54,7 @@ class AppRouter {
             path: home,
             name: 'home',
             pageBuilder: (context, state) => NoTransitionPage(
-              child: HomeScreen(child: Container()),
+              child: HomeScreen(child: const SizedBox.shrink()),
             ),
             routes: [
               GoRoute(
@@ -106,22 +107,27 @@ class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
   /// 跳转到登录页
-  static void goToLogin(BuildContext context) {
-    context.go(login);
+  static void goToLogin() {
+    router.go(login);
+  }
+
+  /// 跳转到注册页
+  static void goToRegister() {
+    router.go(register);
   }
 
   /// 跳转到首页
-  static void goToHome(BuildContext context) {
-    context.go(home);
+  static void goToHome() {
+    router.go(home);
   }
 
   /// 跳转到档案详情
-  static void goToRecordDetail(BuildContext context, String recordId) {
-    context.go('$records/$recordId');
+  static void goToRecordDetail(String recordId) {
+    router.go('$records/$recordId');
   }
 
   /// 跳转到上传页面
-  static void goToUpload(BuildContext context) {
-    context.go('$records/upload');
+  static void goToUpload() {
+    router.go('$records/upload');
   }
 }

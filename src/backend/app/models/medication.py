@@ -18,8 +18,8 @@ class MedicationReminder(Base):
     
     medication_name = Column(String(100), nullable=False, comment="药品名称")
     dosage = Column(String(50), comment="每次用量")
-    frequency = Column(String(50), nullable=False, comment="用药频率：每日 n 次/每周 n 次）
-    timing = Column(JSON, comment="用药时间：[{"time": "08:00", "meals": "before"}, ...]）
+    frequency = Column(String(50), nullable=False, comment="用药频率：每日 n 次/每周 n 次")
+    timing = Column(JSON, comment="用药时间：[{\"time\": \"08:00\", \"meals\": \"before\"}, ...]")
     
     start_date = Column(DateTime, nullable=False, comment="开始日期")
     end_date = Column(DateTime, comment="结束日期")

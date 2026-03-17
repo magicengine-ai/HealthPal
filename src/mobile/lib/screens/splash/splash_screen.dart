@@ -29,9 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
     if (!mounted) return;
 
     if (userProvider.isLoggedIn) {
-      AppRouter.goToHome(context);
+      AppRouter.goToHome();
     } else {
-      AppRouter.goToLogin(context);
+      AppRouter.goToLogin();
     }
   }
 

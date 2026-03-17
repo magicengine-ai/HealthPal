@@ -21,8 +21,8 @@ COPY . .
 # 创建上传目录
 RUN mkdir -p uploads
 
-# 暴露端口
-EXPOSE 8000
+# 暴露端口（微信云托管要求 5000）
+EXPOSE 5000
 
 # 启动命令
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]

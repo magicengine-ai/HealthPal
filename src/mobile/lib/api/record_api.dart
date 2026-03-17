@@ -75,7 +75,7 @@ class RecordApi {
 
       final response = await ApiService.instance.post(
         '$_basePath/upload',
-        formData,
+        data: formData,
       );
 
       if (response.statusCode == 200) {

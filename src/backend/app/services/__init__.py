@@ -8,7 +8,7 @@ from app.services.indicator_service import IndicatorService
 from app.services.medication_service import MedicationService
 from app.services.file_service import FileService
 from app.services.ocr_service import OCRService
-from app.services.sms import SmsService
+from app.services.sms import SMSCodeService as SmsService
 
 __all__ = [
     "AuthService",

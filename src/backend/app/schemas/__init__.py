@@ -6,8 +6,8 @@ from app.schemas.user import (
     UserCreate,
     UserLogin,
     UserResponse,
-    TokenData,
 )
+from app.schemas.common import TokenData
 from app.schemas.family import (
     FamilyMemberBase,
     FamilyMemberCreate,

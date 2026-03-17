@@ -9,8 +9,7 @@ from app.core.celery_config import celery_app
 from app.core.config import settings
 from app.services.ocr_service import OCRService
 from app.services.record_service import RecordService
-from app.db.mysql import get_db
-from app.db.mongodb import get_mongodb
+from app.core.database import get_db, get_mongo_db
 
 
 @celery_app.task(bind=True, max_retries=3)
@@ -24,8 +23,15 @@ def process_ocr_task(self, record_id: str, file_path: str, ocr_provider: str = "
         ocr_provider: OCR 服务提供商 (baidu/tencent)
     """
     try:
-        db = next(get_db())
-        db_client = asyncio.run(get_mongodb())
+        # 注意：Celery 任务中同步调用异步函数需要特殊处理
+        from app.core.database import async_session_maker
+        
+        async def get_session():
+            async with async_session_maker() as session:
+                return session
+        
+        db = asyncio.run(get_session())
+        db_client = asyncio.run(get_mongo_db())
         
         ocr_service = OCRService(db, db_client)
         record_service = RecordService(db, db_client)

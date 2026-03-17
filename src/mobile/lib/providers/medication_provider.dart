@@ -54,7 +54,7 @@ class MedicationProvider extends ChangeNotifier {
 
       final response = await ApiService.instance.post(
         '/medications',
-        medication.toJson(),
+        data: medication.toJson(),
       );
 
       if (response.statusCode == 200) {
@@ -75,7 +75,7 @@ class MedicationProvider extends ChangeNotifier {
     try {
       final response = await ApiService.instance.put(
         '/medications/${medication.id}',
-        medication.toJson(),
+        data: medication.toJson(),
       );
 
       if (response.statusCode == 200) {

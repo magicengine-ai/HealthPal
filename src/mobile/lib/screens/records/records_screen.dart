@@ -39,7 +39,7 @@ class _RecordsScreenState extends State<RecordsScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.add_a_photo),
-            onPressed: () => AppRouter.goToUpload(context),
+            onPressed: () => AppRouter.goToUpload(),
             tooltip: '上传档案',
           ),
         ],
@@ -132,7 +132,7 @@ class _RecordsScreenState extends State<RecordsScreen> {
     return Card(
       margin: const EdgeInsets.only(bottom: AppTheme.spacingMedium),
       child: InkWell(
-        onTap: () => AppRouter.goToRecordDetail(context, record.uuid),
+        onTap: () => AppRouter.goToRecordDetail( record.uuid),
         borderRadius: BorderRadius.circular(AppTheme.borderRadiusMedium),
         child: Padding(
           padding: const EdgeInsets.all(AppTheme.spacingMedium),
@@ -309,7 +309,7 @@ class _RecordsScreenState extends State<RecordsScreen> {
           ),
           const SizedBox(height: AppTheme.spacingLarge),
           ElevatedButton.icon(
-            onPressed: () => AppRouter.goToUpload(context),
+            onPressed: () => AppRouter.goToUpload(),
             icon: const Icon(Icons.add_a_photo),
             label: const Text('上传档案'),
           ),

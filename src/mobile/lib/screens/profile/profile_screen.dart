@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
             onTap: () async {
               await userProvider.logout();
               if (context.mounted) {
-                AppRouter.goToLogin(context);
+                AppRouter.goToLogin();
               }
             },
           ),

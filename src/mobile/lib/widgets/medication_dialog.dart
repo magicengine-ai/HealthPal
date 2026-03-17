@@ -200,7 +200,7 @@ class _MedicationDialogState extends State<MedicationDialog> {
                 decoration: const InputDecoration(
                   labelText: '频率',
                   hintText: '例如：每日 1 次',
-                  prefixIcon: Icons.repeat,
+                  prefixIcon: Icon(Icons.repeat),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -226,10 +226,12 @@ class _MedicationDialogState extends State<MedicationDialog> {
                     deleteIcon: const Icon(Icons.close, size: 18),
                     onDeleted: () => _removeReminderTime(time),
                   )),
-                  Chip(
-                    avatar: const Icon(Icons.add, size: 20),
-                    label: const Text('添加时间'),
-                    onPressed: _addReminderTime,
+                  InkWell(
+                    onTap: _addReminderTime,
+                    child: Chip(
+                      avatar: const Icon(Icons.add, size: 20),
+                      label: const Text('添加时间'),
+                    ),
                   ),
                 ],
               ),

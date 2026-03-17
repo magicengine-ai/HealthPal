@@ -14,19 +14,19 @@ class AppLogger {
   );
 
   static void d(String message, {String? tag}) {
-    _logger.d(message, tag: tag);
+    _logger.d(tag != null ? '[$tag] $message' : message);
   }
 
   static void i(String message, {String? tag}) {
-    _logger.i(message, tag: tag);
+    _logger.i(tag != null ? '[$tag] $message' : message);
   }
 
   static void w(String message, {String? tag}) {
-    _logger.w(message, tag: tag);
+    _logger.w(tag != null ? '[$tag] $message' : message);
   }
 
   static void e(String message, {String? tag, dynamic error}) {
-    _logger.e(message, tag: tag, error: error);
+    _logger.e(tag != null ? '[$tag] $message' : message, error: error, stackTrace: error != null ? StackTrace.current : null);
   }
 
   static void json(String message) {
